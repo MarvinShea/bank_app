@@ -7,7 +7,7 @@ export const useCreateAccount = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const { dispatch } = useAuthContext()
-    const url = 'http://shea-badbank-api.vercel.app/account/create'
+    const url = 'https://shea-badbank-api.vercel.app/account/create'
 
     const createAccount = async (name, email, password) => {
         setIsLoading(true)

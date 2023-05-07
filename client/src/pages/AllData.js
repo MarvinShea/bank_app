@@ -14,7 +14,7 @@ export default function AllData() {
     useEffect(() => {
 
         const getTransaction = async () => {
-            const url = `http://shea-badbank-api.vercel.app/account/gettransaction/${email}`
+            const url = `https://shea-badbank-api.vercel.app/account/gettransaction/${email}`
             const response = await fetch(url, {
                 method: 'GET',
                 headers: { 'Content-Type': 'Application/json' },

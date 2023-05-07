@@ -4,7 +4,7 @@ export const useDeposit = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const transactionType = 'deposit'
-    const url = 'http://shea-badbank-api.vercel.app/account/deposit'
+    const url = 'https://shea-badbank-api.vercel.app/account/deposit'
 
     const makeDeposit = async (email, balance, deposit, auth) => {
         setIsLoading(true)
@@ -24,7 +24,7 @@ export const useDeposit = () => {
         }
 
         if (response.ok) {
-            const url = 'http://localhost:9000/account/transaction'
+            const url = 'https://shea-badbank-api.vercel.app/account/transaction'
             const transaction = await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'Application/json' },
