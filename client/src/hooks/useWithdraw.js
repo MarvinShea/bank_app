@@ -4,7 +4,7 @@ export const useWithdraw = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const transactionType = 'withdraw'
-    const url = 'http://localhost:9000/account/withdraw'
+    const url = 'http://shea-badbank-api.vercel.app/account/withdraw'
 
     const makeWithdraw = async (email, balance, withdraw, auth) => {
         setIsLoading(true)

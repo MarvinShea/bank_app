@@ -24,7 +24,7 @@ export default function Transfer() {
 
         // validate receiver
         if (!email) return setStatus('Please enter recipient email')
-        const url = `http://localhost:9000/account/user/${email}`
+        const url = `http://shea-badbank-api.vercel.app/account/user/${email}`
         const response = await fetch(url, {
             method: 'GET',
             headers: { 'Content-Type': 'Application/json' },
@@ -43,7 +43,7 @@ export default function Transfer() {
         // Update user
         if (!error) {
             const email = auth.email
-            const url = `http://localhost:9000/account/user/${email}`
+            const url = `http://shea-badbank-api.vercel.app/account/user/${email}`
             const response = await fetch(url, {
                 method: 'GET',
                 headers: { 'Content-Type': 'Application/json' },

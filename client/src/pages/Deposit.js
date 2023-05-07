@@ -30,7 +30,7 @@ export default function Deposit() {
             setStatus(error)
         }
         if (!error) {
-            const url = `http://localhost:9000/account/user/${email}`
+            const url = `http://shea-badbank-api.vercel.app/account/user/${email}`
             const response = await fetch(url, {
                 method: 'GET',
                 headers: { 'Content-Type': 'Application/json' },

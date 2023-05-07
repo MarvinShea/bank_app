@@ -8,8 +8,8 @@ export const useTransfer = () => {
     const makeTransfer = async (transfer, sender, receiver) => {
         setIsLoading(true)
         setError(null)
-        const send = 'http://localhost:9000/account/withdraw'
-        const receive = 'http://localhost:9000/account/deposit'
+        const send = 'http://shea-badbank-api.vercel.app/account/withdraw'
+        const receive = 'http://shea-badbank-api.vercel.app/account/deposit'
         const senderBal = Number(sender.balance) - Number(transfer)
         const recBal = Number(receiver.balance) - Number(transfer)
 
@@ -25,7 +25,7 @@ export const useTransfer = () => {
             body: JSON.stringify({ email: receiver.email, balance: recBal })
         })
 
-        const url = 'http://localhost:9000/account/transaction'
+        const url = 'http://shea-badbank-api.vercel.app/account/transaction'
         const sendTransfer = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'Application/json' },

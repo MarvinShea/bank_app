@@ -9,7 +9,7 @@ export const useLogin = () => {
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const { dispatch } = useAuthContext()
-    const url = 'http://localhost:9000/account/login'
+    const url = 'http://shea-badbank-api.vercel.app/account/login'
     const navigate = useNavigate()
     const { setUser } = useContext(UserContext)
 
