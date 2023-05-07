@@ -63,7 +63,7 @@ export default function Deposit() {
                 status={status}
                 body={show === true ?
                     <div>
-                        <p><strong>Your account balance is ${user.balance}</strong></p>
+                        <p><strong>Your account balance is ${user.balance.toFixed(2)}</strong></p>
 
                         Withdraw Amount
                         <input type="input"

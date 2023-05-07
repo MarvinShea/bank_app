@@ -13,7 +13,7 @@ export default function Transfer() {
     const [show, setShow] = useState(true)
     const { user, setUser } = useContext(UserContext)
     const { user: auth } = useAuthContext()
-    const { makeTransfer, error, isLoading } = useTransfer()
+    const { makeTransfer, isLoading } = useTransfer()
 
     const handleSubmit = async () => {
         setStatus('')
@@ -23,6 +23,7 @@ export default function Transfer() {
         if (isNaN(Number(transfer))) return alert('Transfer must be a number')
 
         // validate receiver
+        if (email === user.email) return setStatus('Please select a valid user')
         if (!email) return setStatus('Please enter recipient email')
         const url = `https://shea-badbank-api.vercel.app/account/user/${email}`
         const response = await fetch(url, {
@@ -30,18 +31,16 @@ export default function Transfer() {
             headers: { 'Content-Type': 'Application/json' },
         })
         const receiver = await response.json()
-        console.log(receiver)
-
-        if (response.ok) {
-            makeTransfer(transfer, user, receiver)
+        if (receiver.error) {
+            setStatus(receiver.error)
         }
 
-        if (receiver.error) {
-            setStatus('Invalid recipient')
+        if (!receiver.error) {
+            await makeTransfer(transfer, user, receiver)
         }
 
         // Update user
-        if (!error) {
+        if (!receiver.error) {
             const email = auth.email
             const url = `https://shea-badbank-api.vercel.app/account/user/${email}`
             const response = await fetch(url, {
@@ -49,12 +48,8 @@ export default function Transfer() {
                 headers: { 'Content-Type': 'Application/json' },
             })
             const json = await response.json()
-            setUser(json)
+            await setUser(json)
             setShow(false)
-        }
-
-        if (error) {
-            setStatus(error)
         }
     }
 
@@ -85,7 +80,7 @@ export default function Transfer() {
                         <input type="input"
                             className="form-control"
                             placeholder="Enter receiver email..."
-                            value={email}
+                            value={email.toLowerCase()}
                             onChange={e => setEmail(e.currentTarget.value)} /><br />
 
                         Transfer Amount

@@ -5,18 +5,18 @@ export const useTransfer = () => {
     const [isLoading, setIsLoading] = useState(null)
 
 
-    const makeTransfer = async (transfer, sender, receiver) => {
+    const makeTransfer = async (transfer, user, receiver) => {
         setIsLoading(true)
         setError(null)
         const send = 'https://shea-badbank-api.vercel.app/account/withdraw'
         const receive = 'https://shea-badbank-api.vercel.app/account/deposit'
-        const senderBal = Number(sender.balance) - Number(transfer)
-        const recBal = Number(receiver.balance) - Number(transfer)
+        const userBal = Number(user.balance) - Number(transfer)
+        const recBal = Number(receiver.balance) + Number(transfer)
 
         const sendRes = await fetch(send, {
             method: 'PATCH',
             headers: { 'Content-Type': 'Application/json' },
-            body: JSON.stringify({ email: sender.mail, balance: senderBal })
+            body: JSON.stringify({ email: user.email, balance: userBal })
         })
 
         const recRes = await fetch(receive, {
@@ -30,11 +30,11 @@ export const useTransfer = () => {
             method: 'POST',
             headers: { 'Content-Type': 'Application/json' },
             body: JSON.stringify({
-                name: sender.name,
-                email: sender.email,
+                name: user.name,
+                email: user.email,
                 transactionType: `ET to ${receiver.email}`,
                 amount: transfer,
-                balance: senderBal,
+                balance: userBal,
             })
         })
 
@@ -44,7 +44,7 @@ export const useTransfer = () => {
             body: JSON.stringify({
                 name: receiver.name,
                 email: receiver.email,
-                transactionType: `ET from ${sender.email}`,
+                transactionType: `ET from ${user.email}`,
                 amount: transfer,
                 balance: recBal,
             })
