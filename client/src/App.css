@@ -1,0 +1,29 @@
+.nav-link:hover {
+  background-color: rgb(23, 22, 22);
+  color: black;
+
+}
+
+#login-logout {
+  padding-right: 20px;
+}
+
+li {
+  list-style-type: none;
+  padding: 30;
+}
+
+nav {
+  background-color: blueviolet;
+}
+
+nav button {
+  background: #fff;
+  color: blue;
+  border: 2px solid brown;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 10px;
+}
