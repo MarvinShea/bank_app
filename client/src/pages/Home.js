@@ -8,10 +8,10 @@ export default function Home() {
             <Card
                 bgcolor="light"
                 txtcolor="black"
-                header="Shea's Bad Bank"
+                header="Ace Banking"
                 title="Welcome to the our bank."
                 text="We secure your money so you don't have to!"
-                body={(<img src={bank} className="img-fluid" alt="Bad Bank logo" />)}
+                body={(<img src={bank} className="img-fluid" alt="Ace Banking logo" />)}
             />
         </div>
     )

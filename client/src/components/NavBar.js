@@ -38,7 +38,8 @@ const NavBar = () => {
                                 title="Home"
                                 to="/"
                                 style={style} aria-current="page">
-                                Home</NavLink>
+                                Home
+                            </NavLink>
                         </li>
 
                         {!user && <li className="nav-item">
